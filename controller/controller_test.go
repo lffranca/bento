@@ -1,6 +1,8 @@
 package controller
 
-import "testing"
+import (
+	"testing"
+)
 
 func TestController(t *testing.T) {
 

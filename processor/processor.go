@@ -1,8 +1,12 @@
 package processor
 
-import "github.com/lffranca/bento/processor/handler"
+import (
+	"context"
+
+	"github.com/lffranca/bento/processor/handler"
+)
 
 // Processor Processor
 type Processor interface {
-	Handler(handler.Request) (handler.Response, error)
+	Handler(context.Context, handler.Request) (handler.Response, error)
 }
