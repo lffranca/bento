@@ -9,19 +9,16 @@ import (
 )
 
 func NewUserAuthenticatorService(
-	base *BaseService,
 	authProvider provider.AuthenticationProvider,
 	userProvider provider.UserProvider,
 ) domain.UserAuthenticator {
 	return &userAuthenticatorService{
-		base,
 		authProvider,
 		userProvider,
 	}
 }
 
 type userAuthenticatorService struct {
-	*BaseService
 	authProvider provider.AuthenticationProvider
 	userProvider provider.UserProvider
 }
