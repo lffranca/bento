@@ -23,10 +23,10 @@ type userAuthenticatorService struct {
 	userProvider provider.UserProvider
 }
 
-func (pkg *userAuthenticatorService) AuthenticateUser(ctx context.Context, email, password string) (userAuthentication *entity.UserAuthentication, err error) {
+func (pkg *userAuthenticatorService) AuthenticateUser(ctx context.Context, email, password string) (userAuth *entity.UserAuthentication, err error) {
 	var user *entity.User
 
-	userAuthentication, err = pkg.authProvider.SignIn(ctx, email, password)
+	userAuth, err = pkg.authProvider.SignIn(ctx, email, password)
 	if err != nil {
 		return nil, err
 	}
@@ -37,8 +37,8 @@ func (pkg *userAuthenticatorService) AuthenticateUser(ctx context.Context, email
 	}
 
 	if user != nil {
-		userAuthentication.User = *user
+		userAuth.User = *user
 	}
 
-	return userAuthentication, nil
+	return userAuth, nil
 }

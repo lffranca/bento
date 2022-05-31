@@ -8,7 +8,7 @@ type ListOpt struct {
 	MatchAllTags bool     `json:"match_all_tags,omitempty" yaml:"match_all_tags,omitempty"`
 }
 
-type SearchResponse[T ~comparable] struct {
+type SearchResponse[T any] struct {
 	Items   []T     `json:"items" yaml:"items"`
 	Options ListOpt `json:"options" yaml:"options"`
 }
