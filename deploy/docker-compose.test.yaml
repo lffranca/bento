@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  db:
+    image: bitnami/postgresql:11
+    restart: always
+    volumes:
+      - db_data:/bitnami/postgresql
+    environment:
+      - POSTGRESQL_USERNAME=kong
+      - POSTGRESQL_PASSWORD=kong
+      - POSTGRESQL_DATABASE=kong
+    ports:
+      - "5432:5432"
+    networks:
+      kong:
+
+  kong:
+    image: bitnami/kong:2.8.1
+    restart: always
+    ports:
+      - "8000:8000"
+      - "8443:8443"
+      - "8001:8001"
+      - "8444:8444"
+    environment:
+      - KONG_MIGRATE=yes
+      - KONG_PG_HOST=db
+      - KONG_PG_USER=kong
+      - KONG_PG_PASSWORD=kong
+      - KONG_ADMIN_LISTEN_ADDRESS=0.0.0.0
+      - KONG_ADMIN_HTTP_PORT_NUMBER=8001
+      - KONG_ADMIN_HTTPS_PORT_NUMBER=8444
+      - KONG_PROXY_ACCESS_LOG=/dev/stdout
+      - KONG_ADMIN_ACCESS_LOG=/dev/stdout
+      - KONG_PROXY_ERROR_LOG=/dev/stderr
+      - KONG_ADMIN_ERROR_LOG=/dev/stderr
+    networks:
+      kong:
+
+networks:
+  kong:
+
+volumes:
+  db_data:
