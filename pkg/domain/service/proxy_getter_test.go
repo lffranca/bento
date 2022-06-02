@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-func TestProxyGetterServiceTestSuite(t *testing.T) {
+func TestProxyGetterService(t *testing.T) {
 	suite.Run(t, new(proxyGetterServiceTestSuite))
 }
 

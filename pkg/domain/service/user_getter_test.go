@@ -8,7 +8,7 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-func TestUserGetterServiceTestSuite(t *testing.T) {
+func TestUserGetterService(t *testing.T) {
 	suite.Run(t, new(userGetterServiceTestSuite))
 }
 

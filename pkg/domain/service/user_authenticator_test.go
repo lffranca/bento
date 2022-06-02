@@ -9,7 +9,7 @@ import (
 	"github.com/stretchr/testify/suite"
 )
 
-func TestUserAuthenticatorTestSuite(t *testing.T) {
+func TestUserAuthenticator(t *testing.T) {
 	suite.Run(t, new(userAuthenticatorTestSuite))
 }
 
