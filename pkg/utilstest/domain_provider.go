@@ -4,19 +4,19 @@ import (
 	"context"
 
 	"github.com/lffranca/bento/pkg/domain/entity"
+	"github.com/lffranca/bento/pkg/domain/provider"
 	"github.com/stretchr/testify/mock"
 )
+
+func NewDomainProviderMock[T any]() provider.DataResearcherProvider[T] {
+	return &DomainProviderMock[T]{}
+}
 
 type DomainProviderMock[T any] struct {
 	mock.Mock
 }
 
-func (pkg *DomainProviderMock[T]) List(
-	ctx context.Context,
-	gateway *entity.Gateway,
-	pagination entity.Pagination,
-	tag entity.TagOption,
-) (items []T, err error) {
+func (pkg DomainProviderMock[T]) List(ctx context.Context, gateway *entity.Gateway, pagination entity.Pagination, tag entity.TagOption) (items []T, err error) {
 	args := pkg.MethodCalled(
 		"List",
 		ctx,
@@ -36,7 +36,7 @@ func (pkg *DomainProviderMock[T]) List(
 	return
 }
 
-func (pkg *DomainProviderMock[T]) Get(ctx context.Context, gateway *entity.Gateway, nameOrID string) (item *T, err error) {
+func (pkg DomainProviderMock[T]) Get(ctx context.Context, gateway *entity.Gateway, nameOrID string) (item *T, err error) {
 	args := pkg.MethodCalled(
 		"Get",
 		ctx,

@@ -3,21 +3,17 @@ package gkong
 import (
 	"context"
 
-	"github.com/kong/go-kong/kong"
 	"github.com/lffranca/bento/pkg/domain/entity"
 	"github.com/lffranca/bento/pkg/domain/provider"
 )
 
-func NewServiceAdapter(serviceKong kong.AbstractSvcService) provider.ServiceProvider {
-	return &serviceAdapter{serviceKong}
+func NewServiceAdapter() provider.DataResearcherProvider[entity.Service] {
+	return &serviceAdapter{}
 }
 
-type serviceAdapter struct {
-	serviceKong kong.AbstractSvcService
-}
+type serviceAdapter struct{}
 
 func (pkg *serviceAdapter) List(ctx context.Context, gateway *entity.Gateway, pagination entity.Pagination, tag entity.TagOption) (items []entity.Service, err error) {
-
 	return
 }
 
